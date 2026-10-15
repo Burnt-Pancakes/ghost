@@ -1,0 +1,44 @@
+<aside class="ae-sidebar">
+    <div class="ae-sidebar-head">
+        <a class="ae-brand" href="{{@site.url}}">
+            {{#if @site.logo}}
+                <img class="ae-brand-logo" src="{{@site.logo}}" alt="{{@site.title}}" />
+            {{else}}
+                <svg class="ae-brand-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                    <rect x="14" y="14" width="36" height="36" rx="2"/>
+                    <rect x="25" y="25" width="14" height="14"/>
+                    <path d="M22 14V6M32 14V6M42 14V6M22 58v-8M32 58v-8M42 58v-8M14 22H6M14 32H6M14 42H6M58 22h-8M58 32h-8M58 42h-8"/>
+                </svg>
+            {{/if}}
+            <span class="ae-brand-bar"></span>
+            <span class="ae-brand-name">{{@site.title}}</span>
+        </a>
+        <label for="ae-nav-toggle" class="ae-burger" aria-label="Toggle menu"><span></span></label>
+    </div>
+
+    <div class="ae-sidebar-body">
+        <nav class="ae-nav" aria-label="Main">
+            {{#foreach @site.navigation}}
+                <a href="{{url}}" class="{{#if current}}is-current{{/if}}">{{label}}</a>
+            {{/foreach}}
+        </nav>
+
+        <div class="ae-terminal" aria-hidden="true">
+            <div class="ae-accent">aether@arcanum:~$</div>
+            <div># explore the unknown</div>
+            <div># that matters<span class="ae-cursor">_</span></div>
+        </div>
+
+        <nav class="ae-social" aria-label="Links">
+            {{#foreach @site.secondary_navigation}}
+                <a href="{{url}}">{{label}}</a>
+            {{/foreach}}
+            <a href="{{@site.url}}/rss/">RSS_FEED</a>
+        </nav>
+
+        <div class="ae-badge">
+            <strong>{{@site.title}}</strong>
+            <span>{{#if @site.description}}{{@site.description}}{{else}}Welcome.{{/if}}</span>
+        </div>
+    </div>
+</aside>

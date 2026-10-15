@@ -1,36 +1,21 @@
-{{!-- Layout --}}
-{{!< default }}
-
-{{#contentFor "mapache_class_body"}}is-article{{/contentFor}}
-
-<div class="container mx-auto flex flex-col lg:flex-row my-10">
-        {{#post}}
-        <article class="post min-w-0 flex-auto">
-            {{#unless feature_image}}
-                <div class="lg:pl-20">
-                {{!-- Article Header - partials/article/article-header.hbs --}}
-                {{> "article/article-header"}}
-                {{!-- Article Author - partials/components/author-meta.hbs --}}
-                {{> "components/author-meta"}}
-                </div>
-            {{else}}
-                {{!-- Article Header - partials/article/article-header.hbs --}}
-                {{> "article/article-header"}}
-                {{!-- Article Author - partials/components/author-meta.hbs --}}
-                {{> "components/author-meta"}}
-            {{/unless}}
-
-            {{!-- Featured Image - partials/article/article-media.hbs --}}
-            {{> "article/article-media"}}
-
-            {{!-- Article Content - partials/article/article-body.hbs --}}
-            {{> "article/article-body"}}
-        </article>
-        {{/post}}
-
-        {{!-- Sidebar - partials/sidebar.hbs --}}
-        {{> "sidebar"}}
-</div>
-
-{{!-- Related Articles - partials/article/article-related.hbs --}}
-{{> "article/article-related"}}
+{{!< default}}
+{{#post}}
+<article class="ae-article {{post_class}}">
+    <header class="ae-article-head">
+        <div class="ae-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY-MM-DD"}}</time>
+            {{#if primary_tag}}<span>//</span> <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>{{/if}}
+        </div>
+        <h1 class="ae-article-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="ae-lede">{{custom_excerpt}}</p>{{/if}}
+        <div class="ae-meta">by {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{#unless @last}}, {{/unless}}{{/foreach}} <span>//</span> {{reading_time}}</div>
+    </header>
+    {{#if feature_image}}
+    <figure class="ae-feature">
+        <img src="{{img_url feature_image size="l"}}" alt="{{title}}" />
+        {{#if feature_image_caption}}<figcaption>{{{feature_image_caption}}}</figcaption>{{/if}}
+    </figure>
+    {{/if}}
+    <div class="ae-content gh-content">{{content}}</div>
+</article>
+{{/post}}

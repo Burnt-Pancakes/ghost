@@ -1,0 +1,14 @@
+<article class="ae-card">
+    {{#if feature_image}}
+        <a class="ae-card-img" href="{{url}}"><img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy" /></a>
+    {{/if}}
+    <div class="ae-card-body">
+        <div class="ae-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY-MM-DD"}}</time>
+            {{#if primary_tag}}<span>//</span> <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>{{/if}}
+        </div>
+        <h2 class="ae-card-title"><a href="{{url}}">{{title}}</a></h2>
+        <p class="ae-card-excerpt">{{excerpt words="28"}}</p>
+        <a class="ae-more" href="{{url}}" aria-label="Read {{title}}">&rarr;</a>
+    </div>
+</article>
